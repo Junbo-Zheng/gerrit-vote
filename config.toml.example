@@ -1,0 +1,38 @@
+# gerrit-vote configuration — EXAMPLE
+#
+# Copy this file to ~/.config/gerrit-vote/config.toml and fill in your
+# credentials, then restrict its permissions (it holds plaintext passwords):
+#
+#     mkdir -p ~/.config/gerrit-vote
+#     cp config.toml.example ~/.config/gerrit-vote/config.toml
+#     chmod 600 ~/.config/gerrit-vote/config.toml
+#     # edit the file and replace the placeholder values below
+#
+# The path can be overridden with the $GERRIT_VOTE_CONFIG environment variable.
+#
+# Alternatively, for a SINGLE host you can skip this file entirely and use
+# environment variables instead:
+#     export GERRIT_URL=https://gerrit.example.com
+#     export GERRIT_USER=<your-username>
+#     export GERRIT_HTTP_PASSWORD=<gerrit-http-password>
+#
+# The HTTP password is NOT your login password. Generate one at:
+#     Gerrit -> Settings -> HTTP Credentials -> Generate Password
+
+# Optional: which host a bare change number (no URL) resolves to.
+# Required only if you configure more than one host below.
+default_host = "gerrit.example.com"
+
+# One [hosts."<hostname>"] table per Gerrit server. The <hostname> key MUST
+# match the host in the change URL exactly (the part after https://).
+[hosts."gerrit.example.com"]
+url = "https://gerrit.example.com"
+user = "your-username"
+password = "your-gerrit-http-password"
+
+# Add more hosts as needed — each change URL resolves its own host's creds,
+# so a batch mixing several Gerrit servers just works.
+# [hosts."gerrit.other.com"]
+# url = "https://gerrit.other.com"
+# user = "your-username"
+# password = "another-gerrit-http-password"
